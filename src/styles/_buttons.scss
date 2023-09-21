@@ -1,0 +1,26 @@
+@each $color,
+$value in $theme-colors {
+    .btn-#{$color} {
+        background-color: $value;
+        border: 1px solid $value;
+        color: color-contrast($value)
+    }
+
+    .btn-outlined-#{$color} {
+        background: transparent;
+        border: 2px solid $value;
+        color: $dark;
+
+        &:hover {
+            background-color: $value;
+            color: color-contrast($value);
+            transition: all 0.15s ease-in-out;
+            -webkit-transition: all 0.15s ease-in-out;
+            -moz-transition: all 0.15s ease-in-out;
+            -ms-transition: all 0.15s ease-in-out;
+            -o-transition: all 0.15s ease-in-out;
+        }
+    }
+
+
+}
