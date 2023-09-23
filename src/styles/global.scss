@@ -1,3 +1,13 @@
 @import "./variables";
 @import "./functions/color_contrast";
 @import "./buttons";
+
+
+
+:root {
+
+    @each $color,
+    $value in $theme-colors {
+        --#{$color}:#{$value};
+    }
+}

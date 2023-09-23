@@ -1,14 +1,19 @@
 import React from 'react'
-// import { ButtonProps } from 'react-bootstrap'
-import { ButtonProps, ButtonType } from './Button.types'
+import { ButtonProps, ButtonType, ButtonWidth } from './Button.types'
 import classNames from 'classnames'
-import { Variant } from '../types'
-import styled from 'styled-components'
+import { Position, Size, Variant } from '../Types/types'
+import { styled } from 'styled-components';
+import Icon from '../Icon/Icon'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 
 const ButtonWraper = styled.button`
+    position:relative;
     min-width:150px;
-    display: inline-block;
+    display: flex;
+     min-height: 48px;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
     text-align: center;
     white-space: nowrap;
@@ -19,7 +24,6 @@ const ButtonWraper = styled.button`
     user-select: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 0.5rem 0.75rem;
-    font-size: 1rem;
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color .15s ease-in-out,
@@ -27,24 +31,100 @@ const ButtonWraper = styled.button`
     border-color .15s ease-in-out,
     box-shadow .15s ease-in-out,
     filter .15s ease-in-out;
+    font-size:1.1em;
 
     &:hover{
         cursor:pointer;
         filter:brightness(0.9)
     }
+
+    &.btn-small{
+        font-size: 0.9em;
+        min-width:130px;
+        min-height: 38px;
+    }
+
+    &.btn-large{
+        font-size:1.3em;
+        min-width:170px;
+         min-height: 58px;
+    }
+
+    &:disabled{
+        pointer-events:none;
+        opacity:0.5
+    }
+
+    &.rounded{
+        border-radius:99em;
+    }
+
+    &.icon-button{
+        padding:0.5rem;
+        min-width:unset;
+        border-radius:50%;
+        width:unset !important;
+
+
+        &.btn-large{
+            padding:0.8rem;
+        }
+
+        &.btn-medium{
+            padding:0.6rem;
+            font-size:1.2em;
+        }
+         &.btn-small{
+            font-size:1.1em;
+        }
+    }
+
+
+    &.btn-width-auto{
+        width:auto;
+    }
+
+    &.btn-width-full{
+        width:100%;
+    }
+    &.btn-width-half{
+        width:50%;
+    }
+`
+
+const IconWrapper = styled.div`
+    margin:0rem 0.4rem;
+
+    &.position-left{
+        order:1
+    }
+
+    &.position-right{
+        order:3;
+    }
+`
+
+const Span = styled.span`
+        order:2;
 `
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonProps, ref: any) => {
 
-    const { role, children, className, variant, outlined } = props
+    const { role, children, className, variant, outlined, icon, iconPosition, size, disabled, isRounded, type, iconButton, isLoading, width } = props
 
     return (
 
-        <ButtonWraper role={role} {...props} className={classNames(
+        <ButtonWraper type={type ?? ButtonType.Button}{...props} className={classNames(
             className,
             `btn-${variant || Variant.Primary}`,
-            outlined && `btn-outlined-${variant || Variant.Primary}`)} ref={ref}>
-            {children}
+            outlined && `btn-outlined-${variant || Variant.Primary}`,
+            iconButton && "icon-button",
+            `btn-${size || Size.Small}`,
+            `btn-width-${width || ButtonWidth.Default}`,
+            isRounded && "rounded"
+        )} ref={ref} aria-disabled={disabled} aria-role={role}>
+            {icon && !isLoading && <IconWrapper className={`position-${iconPosition ?? Position.Left}`}><Icon {...icon} /></IconWrapper>}
+            {!iconButton && (isLoading ? <LoadingSpinner /> : <Span>{children}</Span>)}
         </ButtonWraper>
 
     )

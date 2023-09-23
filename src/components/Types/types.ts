@@ -1,8 +1,4 @@
 
-import React from "react";
-
-
-
 export enum Variant {
     Primary = "primary",
     Accent = "accent",
@@ -18,4 +14,10 @@ export enum Size {
     Small = "small",
     Medium = "medium",
     Large = "large"
+}
+
+export enum Position {
+    Left = "left",
+    Center = "center",
+    Right = "right"
 }

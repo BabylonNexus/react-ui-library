@@ -1,9 +1,10 @@
 {
   "name": "@ibabylondev/react-ui-library",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "files":["dist"],
   "types": "dist/types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -31,20 +32,28 @@
     "@storybook/testing-library": "^0.2.0",
     "@types/react": "^18.2.21",
     "@types/styled-components": "^5.1.27",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "i": "^0.3.7",
+    "npm": "^10.1.0",
     "rollup": "^3.29.1",
+    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-dts": "^6.0.2",
+    "rollup-plugin-minification": "^0.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2",
-    "storybook": "^7.4.1",
+    "storybook": "^7.4.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "classnames": "^2.3.2",
+    "react-svg": "^16.1.24",
+    "sass": "^1.67.0",
     "styled-components": "^6.0.7",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
   },
-  "dependencies": {
-    "classnames": "^2.3.2",
-    "react-svg": "^16.1.24",
-    "sass": "^1.67.0"
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
