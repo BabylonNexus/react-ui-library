@@ -9,7 +9,7 @@ const Icon = React.forwardRef<HTMLElement, IconProps>((props: IconProps, ref: an
     const { type, icon, color, className, style } = props
     switch (type) {
         case IconType.FontAwesome:
-            return <FontAwesomeIcon icon={icon ?? faBan} color={color} className={className} style={style} ref={ref} />
+            return <FontAwesomeIcon {...props} icon={icon ?? faBan} color={color} className={className} style={style} ref={ref} />
     }
 
 })
