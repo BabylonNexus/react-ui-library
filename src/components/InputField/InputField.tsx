@@ -4,12 +4,19 @@ import { styled } from 'styled-components';
 import Icon from "../Icon/Icon";
 import classNames from "classnames";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { IconType } from "../Icon";
+import { IconTypeEnum } from "../Icon/Icon.types";
 
 
 const Container = styled.div`
   display: inline-block;
   width: 100%;
+  margin:0.5rem 0rem;
+
+
+  &.disabled{
+    pointer-events: none;
+    opacity: 0.6;
+  }
     
 `
 
@@ -36,6 +43,12 @@ const InputWrapper = styled.input`
             cursor:pointer;
               border:1px solid var(--accent);
         }
+
+        &:focus{
+            border-color:var(--accent);
+            box-shadow:0 0 0 0.1rem var(--accent);
+            outline:none;
+        }
         transition:all 0.15s ease-in-out;
 
         +label{
@@ -43,12 +56,12 @@ const InputWrapper = styled.input`
         }
 
         &.with-icon{
-            padding-inline-start: 2.5rem;
+            padding-inline-start: 2.8rem;
             min-width: 180px;
            
 
             +label{
-                left:25px;
+                left:32px;
             }
         }
 
@@ -59,7 +72,15 @@ const InputWrapper = styled.input`
                 left:23px;
             }
             
-        } 
+        }
+        
+        &.invalid{
+            border-color:var(--danger);
+            
+            &:focus{
+                box-shadow:0 0 0 0.1rem var(--danger);
+            }
+        }
 `
 
 const IconWrapper = styled(Icon)`
@@ -84,13 +105,18 @@ const EraseIcon = styled(Icon)`
 
 const Label = styled.label<any>`
   position: absolute;
-  top: ${(props) => (props.hasValue ? "-13px" : "0")};
+  top: ${(props) => (props.$hasvalue ? "-13px" : "0")};
   font-weight: bold;
   padding: 14px;
-  font-size: ${(props) => (props.hasValue ? "12px" : "18px")};
-  color: grey;
+  font-size: ${(props) => (props.$hasvalue ? "12px" : "18px")};
+  color: var(--text-color);
   transition: 0.15s ease-in-out all;
   pointer-events: none;
+
+  &:after{
+    content: ${(props) => (!props.$hasvalue && props.$isrequired ? "'*'" : "")};
+    color:var(--danger);
+  }
 `
 
 
@@ -127,12 +153,11 @@ const ErrorMsg = styled.span`
     color:var(--danger);
 `
 
-
 const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: InputFieldProps, ref: any) => {
 
-    const { icon, errorMsg, maxLength, placeholder, description, className, onChange, value, type = "text" } = props
+    const { icon, errorMsg, maxLength, placeholder, description, className, onChange, name, value, type = "text", required, disabled, ...rest } = props
 
-    const eraseIcon = { type: IconType.FontAwesome, icon: faXmark, onClick: (e: any) => setValue(""), className: 'erase-icon' }
+    const eraseIcon = { type: IconTypeEnum.FontAwesome, icon: faXmark, onClick: (e: any) => setValue(""), className: 'erase-icon' }
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -148,12 +173,13 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: I
             return `${val.length}/${maxLength}`
         }
     }
+
     return (
-        <Container ref={ref} className="input-group">
+        <Container ref={ref} className={classNames(className, "input-group", disabled && 'disabled')}>
             <InputContainer className="input-wrapper">
                 {icon && <IconWrapper {...icon} className={classNames(icon.className, 'icon-prepend')} />}
-                <InputWrapper {...props} ref={inputRef} className={classNames(className, 'input-field', icon && "with-icon")} placeholder="" onChange={change} value={val} type={type} />
-                {placeholder && <Label hasValue={!!val} className='input-placeholder'>{placeholder}</Label>}
+                <InputWrapper {...rest} name={name} ref={inputRef} className={classNames('input-field', icon && "with-icon", errorMsg && "invalid")} placeholder="" onChange={change} value={val} type={type} maxLength={maxLength} />
+                {placeholder && <Label htmlFor={name} $hasvalue={!!val} $isrequired={required} className='input-placeholder'>{placeholder}</Label>}
                 {(val && type !== "number") && <EraseIcon {...eraseIcon} />}
             </InputContainer>
             {(description || maxLength || errorMsg) ? <InfoContainer className="info-container">

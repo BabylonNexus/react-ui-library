@@ -8,6 +8,9 @@ $accent:#42b4ee;
 $info:#0082FF;
 $warning:#ffcc00;
 
+
+$text-color:#495057;
+
 $theme-colors:("primary":$primary,
     "secondary":$secondary,
     "success":$success,
@@ -16,4 +19,15 @@ $theme-colors:("primary":$primary,
     "light":$light,
     "accent":$accent,
     "warning":$warning,
+    "info":$info) !default;
+
+$colors:("primary":$primary,
+    "secondary":$secondary,
+    "success":$success,
+    "danger":$danger,
+    "dark":$dark,
+    "light":$light,
+    "accent":$accent,
+    "warning":$warning,
+    "text-color":$text-color,
     "info":$info) !default;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonProps, ButtonType, ButtonWidth } from './Button.types'
+import { ButtonProps, ButtonTypeEnum } from './Button.types'
 import classNames from 'classnames'
 import { Position, Size, Variant } from '../Types/types'
 import { styled } from 'styled-components';
@@ -8,10 +8,11 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 
 const ButtonWraper = styled.button`
+    margin:0.5rem 0rem;
     position:relative;
     min-width:150px;
     display: flex;
-     min-height: 48px;
+    min-height: 48px;
     align-items: center;
     justify-content: center;
     font-weight: bold;
@@ -35,7 +36,7 @@ const ButtonWraper = styled.button`
 
     &:hover{
         cursor:pointer;
-        filter:brightness(0.9)
+        filter:brightness(0.8)
     }
 
     &.btn-small{
@@ -110,20 +111,20 @@ const Span = styled.span`
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonProps, ref: any) => {
 
-    const { role, children, className, variant, outlined, icon, iconPosition, size, disabled, isRounded, type, iconButton, isLoading, width } = props
+    const { role, children, className, variant, outlined, icon, iconPosition, size, disabled, isRounded, type, iconButton, isLoading, width, ...rest } = props
 
     return (
 
-        <ButtonWraper type={type ?? ButtonType.Button}{...props} className={classNames(
+        <ButtonWraper type={type ?? ButtonTypeEnum.Button}{...rest} className={classNames(
             className,
-            `btn-${variant || Variant.Primary}`,
-            outlined && `btn-outlined-${variant || Variant.Primary}`,
+            `btn-${variant || "primary"}`,
+            outlined && `btn-outlined-${variant || "primary"}`,
             iconButton && "icon-button",
-            `btn-${size || Size.Small}`,
-            `btn-width-${width || ButtonWidth.Default}`,
+            `btn-${size || "small"}`,
+            `btn-width-${width || "default"}`,
             isRounded && "rounded"
-        )} ref={ref} aria-disabled={disabled} aria-role={role}>
-            {icon && !isLoading && <IconWrapper className={`position-${iconPosition ?? Position.Left}`}><Icon {...icon} /></IconWrapper>}
+        )} ref={ref} aria-disabled={disabled} aria-role={role ?? "button"}>
+            {icon && !isLoading && <IconWrapper className={`position-${iconPosition ?? "left"}`}><Icon {...icon} /></IconWrapper>}
             {!iconButton && (isLoading ? <LoadingSpinner /> : <Span>{children}</Span>)}
         </ButtonWraper>
 

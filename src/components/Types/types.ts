@@ -1,5 +1,5 @@
 
-export enum Variant {
+export enum VariantEnum {
     Primary = "primary",
     Accent = "accent",
     Secondary = "secondary",
@@ -9,15 +9,20 @@ export enum Variant {
     Info = "info",
 }
 
+export type Variant = | "primary" | "accent" | "secondary" | "success" | "danger" | "warning" | "info";
 
-export enum Size {
+
+export enum SizeEnum {
     Small = "small",
     Medium = "medium",
     Large = "large"
 }
+export type Size = | "small" | "medium" | "large";
 
-export enum Position {
+export enum PositionEnum {
     Left = "left",
     Center = "center",
     Right = "right"
 }
+
+export type Position = | "left" | "center" | "right"

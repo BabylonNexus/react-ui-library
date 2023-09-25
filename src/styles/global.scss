@@ -7,7 +7,7 @@
 :root {
 
     @each $color,
-    $value in $theme-colors {
+    $value in $colors {
         --#{$color}:#{$value};
     }
 }

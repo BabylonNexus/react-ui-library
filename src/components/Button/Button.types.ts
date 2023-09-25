@@ -5,7 +5,7 @@ import { IconProps } from "../Icon";
 export interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
     variant?: Variant;
     size?: Size;
-    type?: ButtonType;
+    type?: ButtonType | ButtonTypeEnum;
     outlined?: boolean
     disabled?: boolean;
     isRounded?: boolean;
@@ -13,20 +13,23 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
     iconPosition?: Position,
     iconButton?: boolean,
     isLoading?: boolean;
-    width?: ButtonWidth
+    width?: ButtonWidth | ButtonWidthEnum
 
 }
 
+export type ButtonType = | "button" | "submit" | "reset"
 
-export enum ButtonType {
+export enum ButtonTypeEnum {
     Button = "button",
     Submit = "submit",
     Reset = "reset"
 }
 
-export enum ButtonWidth {
+export enum ButtonWidthEnum {
     Full = "full",
     Half = "half",
     Auto = "auto",
     Default = "default"
 }
+
+export type ButtonWidth = | "full" | "half" | "auto" | "default"

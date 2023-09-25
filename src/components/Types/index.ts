@@ -1,1 +1,1 @@
-export { Variant, Size, Position } from "./types";
+export { VariantEnum, SizeEnum, PositionEnum } from "./types";

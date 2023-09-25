@@ -16,22 +16,29 @@ export default meta;
 type Story = StoryObj<typeof InputField>;
 
 export const WithIcon: Story = (args) => (
-    <InputField data-test-id="InputField-id" {...args} />
+    <div style={{ width: "300px" }}> <InputField data-test-id="InputField-id" {...args} /></div>
 );
 WithIcon.args = {
     icon: {
-        type: IconType.FontAwesome,
+        type: "fontawesome",
         icon: faMagnifyingGlass
-    }
+    },
+    placeholder: "First Name",
 };
 
 
 export const Default: Story = (args) => (
-    <InputField data-test-id="InputField-id" {...args} />
+    <div style={{ width: "300px" }}> <InputField data-test-id="InputField-id" {...args} /></div>
 );
 Default.args = {
+    placeholder: "First Name",
+    errorMsg: "First Name is Invalid"
+};
 
-    onChange: (e) => {
-        console.log("outer")
-    },
+
+export const MultipleInputs: Story = (args) => (
+    <div style={{ width: "300px" }}> <InputField data-test-id="InputField-id" {...args} /><InputField data-test-id="InputField-id" {...args} /></div>
+);
+MultipleInputs.args = {
+    placeholder: "First Name"
 };

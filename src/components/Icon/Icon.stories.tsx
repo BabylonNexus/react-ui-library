@@ -18,5 +18,5 @@ export const Default: Story = (args) => (
 );
 Default.args = {
     color: "green",
-    type: IconType.FontAwesome
+    type: "fontawesome"
 };
