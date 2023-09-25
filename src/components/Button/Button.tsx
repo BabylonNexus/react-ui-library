@@ -123,7 +123,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonPr
             `btn-${size || "small"}`,
             `btn-width-${width || "default"}`,
             isRounded && "rounded"
-        )} ref={ref} aria-disabled={disabled} aria-role={role ?? "button"}>
+        )} ref={ref} aria-disabled={disabled}>
             {icon && !isLoading && <IconWrapper className={`position-${iconPosition ?? "left"}`}><Icon {...icon} /></IconWrapper>}
             {!iconButton && (isLoading ? <LoadingSpinner /> : <Span>{children}</Span>)}
         </ButtonWraper>

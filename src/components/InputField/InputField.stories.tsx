@@ -40,5 +40,9 @@ export const MultipleInputs: Story = (args) => (
     <div style={{ width: "300px" }}> <InputField data-test-id="InputField-id" {...args} /><InputField data-test-id="InputField-id" {...args} /></div>
 );
 MultipleInputs.args = {
-    placeholder: "First Name"
+    placeholder: "First Name",
+    onChange: (e) => {
+        console.log(e)
+    }
+
 };

@@ -10,10 +10,11 @@ export interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> 
     type?: InputType | InputTypeEnum,
     placeholder?: string;
     required?: boolean;
-    disabled?: boolean
+    disabled?: boolean;
+    onReset?: () => void
 }
 
-export type InputType = | 'email' | 'text' | 'password' | 'number' | 'url' | 'search'
+export type InputType = 'email' | 'text' | 'password' | 'number' | 'url' | 'search'
 export enum InputTypeEnum {
     Email = "email",
     Text = "text",

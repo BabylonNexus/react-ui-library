@@ -155,11 +155,7 @@ const ErrorMsg = styled.span`
 
 const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: InputFieldProps, ref: any) => {
 
-    const { icon, errorMsg, maxLength, placeholder, description, className, onChange, name, value, type = "text", required, disabled, ...rest } = props
-
-    const eraseIcon = { type: IconTypeEnum.FontAwesome, icon: faXmark, onClick: (e: any) => setValue(""), className: 'erase-icon' }
-
-    const inputRef = useRef<HTMLInputElement>(null);
+    const { icon, errorMsg, maxLength, placeholder, description, className, onChange, name, value, type = "text", required, disabled, onReset, ...rest } = props
 
     const [val, setValue] = useState<any>(value ?? "")
 
@@ -168,17 +164,24 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: I
         onChange && onChange(e)
     }
 
+    const cleanInput = (e: any) => {
+        setValue("")
+        onReset && onReset()
+    }
+
     const getMaxLengthMsg = () => {
         if (val) {
             return `${val.length}/${maxLength}`
         }
     }
 
+    const eraseIcon = { type: IconTypeEnum.FontAwesome, icon: faXmark, onClick: cleanInput, className: 'erase-icon' }
+
     return (
         <Container ref={ref} className={classNames(className, "input-group", disabled && 'disabled')}>
             <InputContainer className="input-wrapper">
                 {icon && <IconWrapper {...icon} className={classNames(icon.className, 'icon-prepend')} />}
-                <InputWrapper {...rest} name={name} ref={inputRef} className={classNames('input-field', icon && "with-icon", errorMsg && "invalid")} placeholder="" onChange={change} value={val} type={type} maxLength={maxLength} />
+                <InputWrapper {...rest} name={name} className={classNames('input-field', icon && "with-icon", errorMsg && "invalid")} placeholder="" onChange={change} value={val} type={type} maxLength={maxLength} />
                 {placeholder && <Label htmlFor={name} $hasvalue={!!val} $isrequired={required} className='input-placeholder'>{placeholder}</Label>}
                 {(val && type !== "number") && <EraseIcon {...eraseIcon} />}
             </InputContainer>
@@ -192,4 +195,5 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: I
 })
 
 export default InputField
+
 

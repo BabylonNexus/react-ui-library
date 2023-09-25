@@ -14,4 +14,4 @@ export enum IconTypeEnum {
     FontAwesome = "fontawesome"
 }
 
-export type IconType = | "fontawesome"
+export type IconType = 'fontawesome'

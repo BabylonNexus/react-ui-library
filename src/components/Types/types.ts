@@ -9,7 +9,7 @@ export enum VariantEnum {
     Info = "info",
 }
 
-export type Variant = | "primary" | "accent" | "secondary" | "success" | "danger" | "warning" | "info";
+export type Variant = 'primary' | 'accent' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
 
 
 export enum SizeEnum {
@@ -17,7 +17,7 @@ export enum SizeEnum {
     Medium = "medium",
     Large = "large"
 }
-export type Size = | "small" | "medium" | "large";
+export type Size = 'small' | 'medium' | 'large';
 
 export enum PositionEnum {
     Left = "left",
@@ -25,4 +25,4 @@ export enum PositionEnum {
     Right = "right"
 }
 
-export type Position = | "left" | "center" | "right"
+export type Position = 'left' | 'center' | 'right';
