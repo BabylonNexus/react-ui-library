@@ -1,1 +1,1 @@
-export { VariantEnum, SizeEnum, PositionEnum, Variant, Size, Position } from "./types";
+export { VariantEnum, SizeEnum, PositionEnum, Variant, Size, Position, GridBreakpoint, GridBreakpointEnum } from "./types";

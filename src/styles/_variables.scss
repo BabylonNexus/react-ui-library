@@ -9,7 +9,11 @@ $info:#0082FF;
 $warning:#ffcc00;
 
 
-$text-color:#495057;
+$text-color:#000000de;
+$placeholder-color:#495057;
+$divider-color:$secondary;
+$list-item-hover-color:#E9E9E9;
+$card-bg-color:white;
 
 $theme-colors:("primary":$primary,
     "secondary":$secondary,
@@ -30,4 +34,21 @@ $colors:("primary":$primary,
     "accent":$accent,
     "warning":$warning,
     "text-color":$text-color,
+    "divider-color":$divider-color,
+    "placeholder-color":$placeholder-color,
+    "list-item-hover-color":$list-item-hover-color,
+    "card-bg-color":$card-bg-color,
     "info":$info) !default;
+
+$container-max-widths: (sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1320px) !default;
+
+$grid-breakpoints: (xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px) !default;

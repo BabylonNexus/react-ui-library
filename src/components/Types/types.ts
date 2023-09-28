@@ -26,3 +26,14 @@ export enum PositionEnum {
 }
 
 export type Position = 'left' | 'center' | 'right';
+
+export type GridBreakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+
+export enum GridBreakpointEnum {
+    XS = "xs",
+    SM = "sm",
+    MD = "md",
+    LG = "lg",
+    XL = "xl",
+    XXL = "xxl"
+}

@@ -109,7 +109,7 @@ const Label = styled.label<any>`
   font-weight: bold;
   padding: 14px;
   font-size: ${(props) => (props.$hasvalue ? "12px" : "18px")};
-  color: var(--text-color);
+  color: var(--placeholder-color);
   transition: 0.15s ease-in-out all;
   pointer-events: none;
 
