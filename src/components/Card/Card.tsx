@@ -13,6 +13,7 @@ const CardWrapper = styled.div`
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: var(--card-bg-color);
+    border:1px solid var(--card-border-color);
 
     &:hover{
         cursor: pointer;

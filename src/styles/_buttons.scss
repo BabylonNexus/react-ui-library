@@ -3,7 +3,7 @@ $value in $theme-colors {
     .btn-#{$color} {
         background-color: $value;
         border: 1px solid $value;
-        color: color-contrast($value)
+        color: color-contrast($value, $button-text-dark, $button-text-light)
     }
 
     .btn-outlined-#{$color} {

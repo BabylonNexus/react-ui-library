@@ -1,19 +1,52 @@
-$primary:#6f2fcb;
-$secondary:#d3d3d3;
-$success:#4BB543;
-$danger:#BD0000;
-$dark:#041013;
-$light:#f5fafb;
-$accent:#42b4ee;
-$info:#0082FF;
-$warning:#ffcc00;
+$primary:#6f2fcb !default;
+$secondary:#d3d3d3 !default;
+$success:#4BB543 !default;
+$danger:#BD0000 !default;
+$dark:#041013 !default;
+$light:#f5fafb !default;
+$accent:#42b4ee !default;
+$info:#0082FF !default;
+$warning:#ffcc00 !default;
 
 
-$text-color:#000000de;
-$placeholder-color:#495057;
+//buttons
+$button-text-light:#ffffff !default;
+$button-text-dark:#000 !default;
+
+
+//card
+
+$card-bg-color:#edeeee !default;
+$card-border-color:#b8bcbe !default;
+
+//divider
+
 $divider-color:$secondary;
-$list-item-hover-color:#E9E9E9;
-$card-bg-color:white;
+
+//inputs
+$input-bg-color:$light !default;
+$input-border-color: $dark !default;
+$input-hover-color: $accent !default;
+$input-focus-color:$accent !default;
+$input-error-color:$danger !default;
+$input-asterisk-color:$danger !default;
+$input-placeholder-color:#495057 !default;
+$input-icon-color:#3e464a !default;
+$input-color:$dark !default;
+
+
+
+//list-items
+$list-item-hover-color:#E9E9E9 !default;
+
+
+//loading-spinner
+$loading-spinner-default-color:$accent !default;
+
+//modals
+
+$modal-bg-color:#ffffff !default;
+
 
 $theme-colors:("primary":$primary,
     "secondary":$secondary,
@@ -33,12 +66,24 @@ $colors:("primary":$primary,
     "light":$light,
     "accent":$accent,
     "warning":$warning,
-    "text-color":$text-color,
-    "divider-color":$divider-color,
-    "placeholder-color":$placeholder-color,
-    "list-item-hover-color":$list-item-hover-color,
+    "info":$info,
+    "button-text-light":$button-text-light,
+    "button-text-dark":$button-text-dark,
     "card-bg-color":$card-bg-color,
-    "info":$info) !default;
+    "card-border-color":$card-border-color,
+    "divider-color":$divider-color,
+    "input-bg-color":$input-bg-color,
+    "input-border-color":$input-border-color,
+    "input-hover-color":$input-hover-color,
+    "input-focus-color":$input-focus-color,
+    "input-error-color":$input-error-color,
+    "input-asterisk-color":$input-asterisk-color,
+    "input-placeholder-color":$input-placeholder-color,
+    "input-icon-color":$input-icon-color,
+    "input-color":$input-color,
+    "list-item-hover-color":$list-item-hover-color,
+    "loading-spinner-default-color":$loading-spinner-default-color,
+    "modal-bg-color":$modal-bg-color) !default;
 
 $container-max-widths: (sm: 540px,
     md: 720px,
@@ -52,3 +97,20 @@ $grid-breakpoints: (xs: 0,
     lg: 992px,
     xl: 1200px,
     xxl: 1400px) !default;
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 1.5rem !default;
+$grid-row-columns: 6 !default;
+
+
+$spacer: 1rem !default;
+
+$spacers: (0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+) !default;
+
+$gutters: $spacers !default;

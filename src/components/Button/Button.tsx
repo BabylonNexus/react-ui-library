@@ -36,7 +36,7 @@ const ButtonWraper = styled.button`
 
     &:hover{
         cursor:pointer;
-        filter:brightness(0.8)
+        filter:brightness(1.1)
     }
 
     &.btn-small{
@@ -95,6 +95,8 @@ const ButtonWraper = styled.button`
 
 const IconWrapper = styled.div`
     margin:0rem 0.4rem;
+
+    font-size: 1.2em;
 
     &.position-left{
         order:1

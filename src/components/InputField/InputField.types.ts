@@ -2,6 +2,7 @@ import { IconProps } from "../Icon";
 
 export interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> {
     icon?: IconProps
+    isRounded?: boolean;
     name?: string;
     errorMsg?: string;
     maxLength?: number;

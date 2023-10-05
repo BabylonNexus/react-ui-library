@@ -10,11 +10,8 @@ const Wrapper = styled.div`
         justify-content:center;
 `
 const Spinner = styled.div`
-    //position: absolute;
-    //top: 0%;
-    //left: 50%;
     transform: translate(0%, -150%);
-    color: var(--accent);
+    color: var(--loading-spinner-default-color);
     font-size: 7px;
     text-indent: -9999em;
     animation-delay: -0.16s;

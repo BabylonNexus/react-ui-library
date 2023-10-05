@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { InputFieldProps } from "./InputField.types"
 import { styled } from 'styled-components';
 import Icon from "../Icon/Icon";
@@ -34,19 +34,20 @@ const InputWrapper = styled.input`
         padding-inline-end: 2rem;
         font-size: 1.1em;
         border-radius:0.3rem;
-        background-color:var(--light);
+        background-color: var(--input-bg-color);
         min-width:235px;
         font-weight:600;
-        border:1px solid var(--dark);
+        border:1px solid var(--input-border-color);
+        color:var(--input-color);
         outline:none;
         &:hover{
             cursor:pointer;
-              border:1px solid var(--accent);
+              border:1px solid var(--input-hover-color);
         }
 
         &:focus{
-            border-color:var(--accent);
-            box-shadow:0 0 0 0.1rem var(--accent);
+            border-color:var(--input-focus-color);
+            box-shadow:0 0 0 0.1rem var(--input-focus-color);
             outline:none;
         }
         transition:all 0.15s ease-in-out;
@@ -75,11 +76,15 @@ const InputWrapper = styled.input`
         }
         
         &.invalid{
-            border-color:var(--danger);
+            border-color:var(--input-error-color);
             
             &:focus{
-                box-shadow:0 0 0 0.1rem var(--danger);
+                box-shadow:0 0 0 0.1rem var(--input-error-color);
             }
+        }
+
+        &.rounded{
+            border-radius: 99em;
         }
 `
 
@@ -88,6 +93,7 @@ const IconWrapper = styled(Icon)`
     top:13px;
     left:10px;
     font-size: 1.4em;
+    color:var(--input-icon-color);
 `
 
 
@@ -106,16 +112,16 @@ const EraseIcon = styled(Icon)`
 const Label = styled.label<any>`
   position: absolute;
   top: ${(props) => (props.$hasvalue ? "-13px" : "0")};
-  font-weight: bold;
+ // font-weight: bold;
   padding: 14px;
   font-size: ${(props) => (props.$hasvalue ? "12px" : "18px")};
-  color: var(--placeholder-color);
+  color: var(--input-placeholder-color);
   transition: 0.15s ease-in-out all;
   pointer-events: none;
 
   &:after{
     content: ${(props) => (!props.$hasvalue && props.$isrequired ? "'*'" : "")};
-    color:var(--danger);
+    color:var(--input-asterisk-color);
   }
 `
 
@@ -150,12 +156,12 @@ const ErrorMsg = styled.span`
     font-size:0.9em;
     font-weight: bold;
     margin-right: 1rem;
-    color:var(--danger);
+    color:var(--input-error-color);
 `
 
 const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: InputFieldProps, ref: any) => {
 
-    const { icon, errorMsg, maxLength, placeholder, description, className, onChange, name, value, type = "text", required, disabled, onReset, ...rest } = props
+    const { icon, isRounded, errorMsg, maxLength, placeholder, description, className, onChange, name, value, type = "text", required, disabled, onReset, ...rest } = props
 
     const [val, setValue] = useState<any>(value ?? "")
 
@@ -175,13 +181,33 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: I
         }
     }
 
+    const inputRef = useRef<any>(null)
+
+    const listenForErase = (e: any) => {
+
+        if ((e.keyCode === 27 || e.key === "Escape") && document.activeElement === e.srcElement) {
+            cleanInput(e)
+        }
+
+    }
+
+    useEffect(() => {
+
+        if (inputRef && inputRef.current) {
+            const input = inputRef.current
+            input.addEventListener("keydown", listenForErase)
+        }
+
+        return () => inputRef?.current?.removeEventListener("keydown", listenForErase)
+    }, [])
+
     const eraseIcon = { type: IconTypeEnum.FontAwesome, icon: faXmark, onClick: cleanInput, className: 'erase-icon' }
 
     return (
         <Container ref={ref} className={classNames(className, "input-group", disabled && 'disabled')}>
             <InputContainer className="input-wrapper">
                 {icon && <IconWrapper {...icon} className={classNames(icon.className, 'icon-prepend')} />}
-                <InputWrapper {...rest} name={name} className={classNames('input-field', icon && "with-icon", errorMsg && "invalid")} placeholder="" onChange={change} value={val} type={type} maxLength={maxLength} />
+                <InputWrapper {...rest} ref={inputRef} name={name} className={classNames('input-field', icon && "with-icon", errorMsg && "invalid", isRounded && 'rounded')} placeholder="" onChange={change} value={val} type={type} maxLength={maxLength} />
                 {placeholder && <Label htmlFor={name} $hasvalue={!!val} $isrequired={required} className='input-placeholder'>{placeholder}</Label>}
                 {(val && type !== "number") && <EraseIcon {...eraseIcon} />}
             </InputContainer>
