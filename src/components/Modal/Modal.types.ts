@@ -1,5 +1,6 @@
 
 
 export interface ModalProps extends React.HTMLAttributes<HTMLInputElement> {
-    isOpen?: boolean
+    isOpen?: boolean;
+    showCloseBtn?: boolean
 }

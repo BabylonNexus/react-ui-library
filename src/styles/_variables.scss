@@ -46,6 +46,9 @@ $loading-spinner-default-color:$accent !default;
 //modals
 
 $modal-bg-color:#ffffff !default;
+$modal-close-buton-bg:#bdc3c7 !default;
+$modal-close-icon-color: $dark !default;
+
 
 
 $theme-colors:("primary":$primary,
@@ -83,7 +86,9 @@ $colors:("primary":$primary,
     "input-color":$input-color,
     "list-item-hover-color":$list-item-hover-color,
     "loading-spinner-default-color":$loading-spinner-default-color,
-    "modal-bg-color":$modal-bg-color) !default;
+    "modal-bg-color":$modal-bg-color,
+    "modal-close-buton-bg":$modal-close-buton-bg,
+    "modal-close-icon-color":$modal-close-icon-color) !default;
 
 $container-max-widths: (sm: 540px,
     md: 720px,
@@ -98,10 +103,6 @@ $grid-breakpoints: (xs: 0,
     xl: 1200px,
     xxl: 1400px) !default;
 
-$grid-columns: 12 !default;
-$grid-gutter-width: 1.5rem !default;
-$grid-row-columns: 6 !default;
-
 
 $spacer: 1rem !default;
 
@@ -114,3 +115,6 @@ $spacers: (0: 0,
 ) !default;
 
 $gutters: $spacers !default;
+$grid-columns: 12 !default;
+$grid-gutter-width: 1.5rem !default;
+$grid-row-columns: 6 !default;
