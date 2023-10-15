@@ -50,6 +50,11 @@ $modal-close-buton-bg:#bdc3c7 !default;
 $modal-close-icon-color: $dark !default;
 
 
+//tabs
+
+$tab-border-color:$secondary;
+
+
 
 $theme-colors:("primary":$primary,
     "secondary":$secondary,
@@ -88,7 +93,8 @@ $colors:("primary":$primary,
     "loading-spinner-default-color":$loading-spinner-default-color,
     "modal-bg-color":$modal-bg-color,
     "modal-close-buton-bg":$modal-close-buton-bg,
-    "modal-close-icon-color":$modal-close-icon-color) !default;
+    "modal-close-icon-color":$modal-close-icon-color,
+    "tab-border-color":$tab-border-color) !default;
 
 $container-max-widths: (sm: 540px,
     md: 720px,

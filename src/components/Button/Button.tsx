@@ -36,7 +36,7 @@ const ButtonWraper = styled.button`
 
     &:hover{
         cursor:pointer;
-        filter:brightness(1.1)
+        filter:opacity(0.9)
     }
 
     &.btn-small{
@@ -126,7 +126,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonPr
             `btn-width-${width || "default"}`,
             isRounded && "rounded"
         )} ref={ref} aria-disabled={disabled}>
-            {icon && !isLoading && <IconWrapper className={`position-${iconPosition ?? "left"}`}><Icon {...icon} /></IconWrapper>}
+            {icon && !isLoading && <IconWrapper className={classNames('btn-icon', `position-${iconPosition ?? "left"}`)}><Icon {...icon} /></IconWrapper>}
             {!iconButton && (isLoading ? <LoadingSpinner /> : <Span>{children}</Span>)}
         </ButtonWraper>
 

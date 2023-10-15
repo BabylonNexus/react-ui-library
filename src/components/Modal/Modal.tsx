@@ -36,6 +36,7 @@ const CloseButton = styled.button`
     width: 25px;
     border: none;
     border-radius: 50%;
+    z-index: 100;
 
     transition: all 0.3s ease-in-out;
 
@@ -50,14 +51,16 @@ const StyledIcon = styled(Icon)`
 `
 
 const Modal = React.forwardRef<HTMLElement, ModalProps>((props: ModalProps, ref: any) => {
-    const { children, isOpen, className, showCloseBtn, ...rest } = props
+    const { children, isOpen, className, showCloseBtn, onClose, ...rest } = props
 
-    const [open, setOpen] = useState<boolean>(true)
+    const closeModal = (e: any) => {
+        onClose && onClose()
+    }
 
     return <>
-        {open && <ModalWrapper {...rest} ref={ref} className={classNames(className, "modal-overlay")}>
-            <ContentWrapper>
-                {showCloseBtn && <CloseButton role="button" aria-label="close" className="close-btn" onClick={(e: any) => setOpen(false)}>
+        {isOpen && <ModalWrapper {...rest} ref={ref} className={classNames(className, "modal-overlay")}>
+            <ContentWrapper className="modal-content">
+                {showCloseBtn && <CloseButton role="button" aria-label="close" className="close-btn" onClick={closeModal}>
                     <StyledIcon type="fontawesome" icon={faX} />
                 </CloseButton>}
                 {children}

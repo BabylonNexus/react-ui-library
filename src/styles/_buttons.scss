@@ -13,7 +13,7 @@ $value in $theme-colors {
 
         &:hover {
             background-color: $value;
-            color: color-contrast($value);
+            color: color-contrast($value, $button-text-dark, $button-text-light);
             transition: all 0.15s ease-in-out;
             -webkit-transition: all 0.15s ease-in-out;
             -moz-transition: all 0.15s ease-in-out;
