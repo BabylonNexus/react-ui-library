@@ -14,5 +14,7 @@ export { default as useComponentVisible } from "./Hooks"
 export { default as Modal, ModalProps } from "./Modal"
 export { default as Row, RowProps } from "./Row"
 export { default as Col, ColProps } from "./Col"
-export { TabContent, TabContentProps, Tab, TabTitle, TabTitleProps, Tabs, TabsProps } from "./Tabs"
+export { TabContent, TabContentProps, Tab, TabTitle, TabTitleProps, Tabs, TabsProps, TabUtils } from "./Tabs"
+export { default as TextArea, TextAreaProps } from "./TextArea"
+export { SideModal, SideModalHeader, SideModalContent, SideModalFooter, SideModalProps, SideModalHeaderProps } from "./SideModal"
 export { VariantEnum, SizeEnum, PositionEnum, Variant, Position, Size, GridBreakpoint, GridBreakpointEnum } from "./Types";

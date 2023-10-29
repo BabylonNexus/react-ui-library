@@ -28,8 +28,7 @@ const ButtonWrapper = styled.button`
 `
 
 
-const TabTitle = React.forwardRef<HTMLElement, TabTitleProps>((props: TabTitleProps, ref: any) => {
-
+const TabTitle = React.forwardRef<HTMLElement, TabTitleProps>(function TabTitle(props: TabTitleProps, ref: any) {
     const { children, isActive, className, onSelect, onClick, ...rest } = props
 
     const onPress = (e: any) => {
@@ -38,9 +37,8 @@ const TabTitle = React.forwardRef<HTMLElement, TabTitleProps>((props: TabTitlePr
     }
 
     return <TabTtitleWrapper role="presentation" {...rest} className={classNames(className, "tab-title", isActive && "active")} ref={ref} onClick={onPress}><ButtonWrapper type="button" role="tab">{children}</ButtonWrapper></TabTtitleWrapper>
-
 })
 
-
+TabTitle.displayName = "TabTitle"
 
 export default TabTitle   

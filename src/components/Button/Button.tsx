@@ -7,10 +7,12 @@ import Icon from '../Icon/Icon'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 
-const ButtonWraper = styled.button`
+const ButtonWraper = styled.button<any>`
     margin:0.5rem 0rem;
+    text-decoration: none;
     position:relative;
     min-width:150px;
+    box-sizing: border-box;
     display: flex;
     min-height: 48px;
     align-items: center;
@@ -82,7 +84,7 @@ const ButtonWraper = styled.button`
 
 
     &.btn-width-auto{
-        width:auto;
+        width: fit-content;
     }
 
     &.btn-width-full{
@@ -113,17 +115,16 @@ const Span = styled.span`
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props: ButtonProps, ref: any) => {
 
-    const { role, children, className, variant, outlined, icon, iconPosition, size, disabled, isRounded, type, iconButton, isLoading, width, ...rest } = props
+    const { role, target, as, href, children, className, variant, outlined, icon, iconPosition, size, disabled, isRounded, type, iconButton, isLoading, width, ...rest } = props
 
     return (
-
-        <ButtonWraper type={type ?? ButtonTypeEnum.Button}{...rest} className={classNames(
+        <ButtonWraper {...rest} type={type ?? ButtonTypeEnum.Button} as={as ?? "button"} href={href} target={target} className={classNames(
             className,
             `btn-${variant || "primary"}`,
             outlined && `btn-outlined-${variant || "primary"}`,
             iconButton && "icon-button",
             `btn-${size || "small"}`,
-            `btn-width-${width || "default"}`,
+            `btn-width-${width || "auto"}`,
             isRounded && "rounded"
         )} ref={ref} aria-disabled={disabled}>
             {icon && !isLoading && <IconWrapper className={classNames('btn-icon', `position-${iconPosition ?? "left"}`)}><Icon {...icon} /></IconWrapper>}

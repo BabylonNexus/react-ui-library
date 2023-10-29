@@ -13,10 +13,13 @@ export default meta;
 
 type Story = StoryObj<typeof LoadingSpinner>;
 
-export const Default: Story = (args) => (
-    <LoadingSpinner data-test-id="InputField-id" {...args} />
-);
+export const Default: Story = (args) => {
+    return <LoadingSpinner data-test-id="InputField-id"  {...args} />
+}
+
 Default.args = {
-    // color: "green",
+
+    color: "green",
+    fontSize: "3px"
     // type: IconType.FontAwesome
 };

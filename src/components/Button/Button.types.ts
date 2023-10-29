@@ -3,6 +3,9 @@ import { Position, Size, VariantEnum, Variant } from "../Types/types";
 import { IconProps } from "../Icon";
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
+    as?: string
+    href?: string;
+    target?: string
     variant?: Variant | VariantEnum;
     size?: Size;
     type?: ButtonType | ButtonTypeEnum;

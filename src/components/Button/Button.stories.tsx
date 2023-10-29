@@ -2,6 +2,7 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button";
 import { faUser, faShareNodes, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
 
 const meta: Meta<typeof Button> = {
@@ -14,8 +15,15 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
+const TestLink = styled(Button)`
+       //color:red;
+`
+
 export const Primary: Story = (args) => (
-    <Button data-test-id="InputField-id" {...args}>Click Me</Button>
+    <>
+        <Button data-test-id="InputField-id" {...args}>Click Me</Button>
+        <TestLink forwardedAs="a" data-test-id="InputField-id" {...args} href="https://www.google.com" target="_blank">Click Me</TestLink>
+    </>
 );
 Primary.args = {
     type: "button",
@@ -23,6 +31,7 @@ Primary.args = {
     "aria-label": "Test",
     "aria-labelledby": "Labelled By",
     onClick: (e) => alert("Fire"),
+    //  as: "button"
 };
 
 export const WithIcon: Story = (args) => (

@@ -4,6 +4,7 @@ import { TabsProps } from "./Tabs.types";
 import TabList from "./TabList";
 import { TabComponent, extractComponets, extractTabComponents } from "./utils";
 import classNames from "classnames";
+import { withSSR } from "../../utils";
 
 
 const TabsWrapper = styled.div`
@@ -43,17 +44,21 @@ const Tabs = React.forwardRef<HTMLElement, TabsProps>((props: TabsProps, ref: an
         setContents([...contents])
     }
 
-    const [t, c] = extractComponets(children, onTabSelect, selectedTab ?? 0)
+    const [initialTitles, initialContents] = extractComponets(children, onTabSelect, selectedTab ?? 0)
 
-    const [titles, setTitles] = useState<TabComponent[]>(t)
-    const [contents, setContents] = useState<TabComponent[]>(c)
+
+    const [titles, setTitles] = useState<TabComponent[]>(initialTitles)
+    const [contents, setContents] = useState<TabComponent[]>(initialContents)
+
+
+
 
     return <TabsWrapper  {...rest} className={classNames(className, "tabs")} ref={ref}>
         <TabList>
-            {titles.map((title, index) => (<Fragment key={index}>{title.node}</Fragment>))}
+            {withSSR<TabComponent[]>(initialTitles, titles).map((title, index) => (<Fragment key={index}>{title.node}</Fragment>))}
         </TabList>
         <TabContentsWrapper className="tab-content">
-            {contents.map((content, index) => (<Fragment key={index}>{content.node}</Fragment>))}
+            {withSSR<TabComponent[]>(initialContents, contents).map((content, index) => (<Fragment key={index}>{content.node}</Fragment>))}
         </TabContentsWrapper>
     </TabsWrapper>
 

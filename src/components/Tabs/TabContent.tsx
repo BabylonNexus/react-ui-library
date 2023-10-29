@@ -15,7 +15,6 @@ const slideIn = keyframes`
 `
 
 const TabContentWrapper = styled.div`
-
     display: none;
     transform: translateX(100%);
     width: 100%;
@@ -28,15 +27,13 @@ const TabContentWrapper = styled.div`
 `
 
 
-
-const TabContent = React.forwardRef<HTMLElement, TabContentProps>((props: TabContentProps, ref: any) => {
+const TabContent = React.forwardRef<HTMLElement, TabContentProps>(function TabContent(props: TabContentProps, ref: any) {
 
     const { children, className, isActive, ...rest } = props
 
     return <TabContentWrapper {...rest} className={classNames(className, "tab-pane", isActive && 'active')} role="tabpanel" ref={ref}>{children}</TabContentWrapper>
-
 })
 
-
+TabContent.displayName = "TabContent"
 
 export default TabContent

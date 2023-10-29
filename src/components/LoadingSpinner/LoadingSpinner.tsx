@@ -9,10 +9,10 @@ const Wrapper = styled.div`
         align-items:center;
         justify-content:center;
 `
-const Spinner = styled.div`
+const Spinner = styled.div<{ $size: string }>`
     transform: translate(0%, -150%);
     color: var(--loading-spinner-default-color);
-    font-size: 7px;
+    font-size: ${props => props.$size};
     text-indent: -9999em;
     animation-delay: -0.16s;
     border-radius: 50%;
@@ -61,17 +61,16 @@ const Spinner = styled.div`
 
 
 const LoadingSpinner = React.forwardRef<HTMLElement, LoadingSpinnerProps>((props: LoadingSpinnerProps, ref: any) => {
-
-    const { className, style, color } = props
+    const { className, style, color, fontSize } = props
 
     const styles = {
         ...style,
-        color
+        color,
+
     }
 
-
     return <Wrapper>
-        <Spinner ref={ref} style={styles} className={className}></Spinner>
+        <Spinner $size={fontSize && fontSize.length > 0 ? fontSize : "7px"} ref={ref} style={styles} className={className}></Spinner>
     </Wrapper>
 
 })

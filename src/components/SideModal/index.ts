@@ -1,0 +1,5 @@
+export { default as SideModal } from "./SideModal"
+export { default as SideModalHeader } from "./SideModalHeader"
+export { default as SideModalContent } from "./SideModalContent"
+export { default as SideModalFooter } from "./SideModalFooter"
+export { SideModalProps, SideModalHeaderProps } from "./SideModal.types"

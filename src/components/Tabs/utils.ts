@@ -40,7 +40,6 @@ const createTabContent = (node: ReactElement, isActive: boolean) => {
 
 
 export const extractComponets = (children: ReactNode, tabSelectCallback: (e: any) => void, selectedIndex: number) => {
-
     const components: any[] = React.Children.toArray(children)
     const titles: TabComponent[] = []
     const contents: TabComponent[] = []
