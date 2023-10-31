@@ -18,8 +18,10 @@ type Story = StoryObj<typeof SideModal>;
 export const Default: Story = (args) => (
 
     <>
-
-        <SideModal data-test-id="InputField-id" isOpen={true} {...args} onClose={(e) => console.log("called2")}>
+        <div style={{ height: "2000px" }}>
+            Very long content
+        </div>
+        <SideModal data-test-id="InputField-id" isOpen={true} {...args}>
             <SideModal.Header closeBtn>Side Modal Example</SideModal.Header>
             <SideModal.Content>Content</SideModal.Content>
             <SideModal.Footer>Footer</SideModal.Footer>

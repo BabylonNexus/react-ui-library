@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { SideModalProps } from "./SideModal.types"
 import { keyframes, styled } from "styled-components"
 import SideModalHeader from "./SideModalHeader"
@@ -85,9 +85,15 @@ const ContentWraper = styled.div<{ $width: string }>`
 
 
 const SideModal = React.forwardRef<HTMLElement, SideModalProps>((props: SideModalProps, ref: any) => {
-    const { children, isOpen, width = "300px", className, onClose, ...rest } = props
+    const { children, isOpen, staticBackdrop = false, width = "300px", className, onClose, ...rest } = props
 
     const [isClosing, setIsClosing] = useState(false)
+    const contentRef: any = useRef(null)
+
+
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "auto"
+    }, [isOpen])
 
 
     const closeModal = (e: any) => {
@@ -116,9 +122,33 @@ const SideModal = React.forwardRef<HTMLElement, SideModalProps>((props: SideModa
         })
     }
 
+
+    const handleClickOutside = (e: any) => {
+        if (contentRef.current && !contentRef.current?.contains(e.target as Node)) {
+            if (!staticBackdrop) {
+                closeModal(e)
+            }
+        }
+    }
+
+    const listenKeyDown = (e: any) => {
+        if (!staticBackdrop && (e.code === "Escape" || e.keyCode === 27)) {
+            closeModal(e)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside, true)
+        document.addEventListener("keydown", listenKeyDown, true)
+        return () => {
+            document.removeEventListener("click", handleClickOutside, true)
+            document.removeEventListener("keydown", listenKeyDown, true)
+        }
+    }, [])
+
     return <>
         {isOpen && <ModalWrapper {...rest} ref={ref} className={classNames(className, "slide-modal-backdrop", isClosing && "fade-out")}>
-            <ContentWraper $width={width} className={classNames("slide-modal-content", isClosing && "slide-out")}>
+            <ContentWraper ref={contentRef} $width={width} className={classNames("slide-modal-content", isClosing && "slide-out")}>
                 {modifiedChildren(children)}
             </ContentWraper>
         </ModalWrapper>}

@@ -30,6 +30,7 @@ const CloseButtonWrapper = styled.button`
 
 const HeaderTitle = styled.h2`
     font-size: 1.2em;
+    margin-left: 1rem;
 `
 
 

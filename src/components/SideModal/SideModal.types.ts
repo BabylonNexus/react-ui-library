@@ -3,6 +3,7 @@
 export interface SideModalProps extends React.HTMLAttributes<HTMLInputElement> {
     isOpen?: boolean;
     width?: string;
+    staticBackdrop?: boolean
     onClose?: () => void
 }
 
