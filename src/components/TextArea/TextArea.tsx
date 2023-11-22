@@ -169,7 +169,7 @@ const TextArea = React.forwardRef<HTMLElement, TextAreaProps>((props: TextAreaPr
 
     return <Container ref={ref} className={classNames(className, "input-group", disabled && 'disabled')}>
         <InputContainer className="input-wrapper">
-            <TextAreaInput {...rest} name={name} className={classNames('input-textarea', icon && "with-icon",)} placeholder="" value={val} onChange={change} maxLength={maxLength} />
+            <TextAreaInput {...rest} rows={rows} cols={cols} name={name} className={classNames('input-textarea', icon && "with-icon",)} placeholder="" value={val} onChange={change} maxLength={maxLength} />
             {icon && <IconWrapper {...icon} className={classNames(icon.className, 'icon-prepend')} />}
             {placeholder && <Label htmlFor={name} $hasvalue={!!val} $isrequired={required} className='input-placeholder'>{placeholder}</Label>}
         </InputContainer>

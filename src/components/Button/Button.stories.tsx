@@ -8,7 +8,8 @@ import styled from "styled-components";
 const meta: Meta<typeof Button> = {
     component: Button,
     title: "UIKit/Button",
-    argTypes: {},
+    argTypes: {
+    },
 };
 
 export default meta;

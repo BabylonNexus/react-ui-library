@@ -1,5 +1,3 @@
-
-
 export { default as Button, ButtonProps, ButtonType, ButtonWidth, ButtonTypeEnum, ButtonWidthEnum } from "./Button"
 export { default as Icon, IconType, IconProps, IconTypeEnum } from "./Icon"
 export { default as InputField, InputType, InputTypeEnum } from "./InputField"
@@ -17,4 +15,6 @@ export { default as Col, ColProps } from "./Col"
 export { TabContent, TabContentProps, Tab, TabTitle, TabTitleProps, Tabs, TabsProps, TabUtils } from "./Tabs"
 export { default as TextArea, TextAreaProps } from "./TextArea"
 export { SideModal, SideModalHeader, SideModalContent, SideModalFooter, SideModalProps, SideModalHeaderProps } from "./SideModal"
+export { default as Select, IOption, SelectProps } from "./Select"
+export { default as CheckBox, CheckBoxProps } from "./CheckBox"
 export { VariantEnum, SizeEnum, PositionEnum, Variant, Position, Size, GridBreakpoint, GridBreakpointEnum } from "./Types";

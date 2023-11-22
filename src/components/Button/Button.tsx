@@ -50,7 +50,7 @@ const ButtonWraper = styled.button<any>`
     &.btn-large{
         font-size:1.3em;
         min-width:170px;
-         min-height: 58px;
+        min-height: 58px;
     }
 
     &:disabled{

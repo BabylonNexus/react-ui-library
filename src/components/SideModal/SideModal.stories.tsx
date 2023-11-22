@@ -23,7 +23,18 @@ export const Default: Story = (args) => (
         </div>
         <SideModal data-test-id="InputField-id" isOpen={true} {...args}>
             <SideModal.Header closeBtn>Side Modal Example</SideModal.Header>
-            <SideModal.Content>Content</SideModal.Content>
+            <SideModal.Content>
+                <div style={{ height: "3000px" }}>
+                    Content
+                    Content
+                    Content
+                    Content
+                    Content
+                    Content
+                    Content
+                    Content
+                </div>
+            </SideModal.Content>
             <SideModal.Footer>Footer</SideModal.Footer>
         </SideModal>
     </>
@@ -32,4 +43,5 @@ export const Default: Story = (args) => (
 );
 Default.args = {
     //isOpen: true
+    //beforeOpen: () => alert("opened")
 };

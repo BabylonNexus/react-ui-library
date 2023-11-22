@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import InputField from "./InputField";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { IconType } from "../Icon";
+import Icon, { IconType } from "../Icon";
 
 
 const meta: Meta<typeof InputField> = {
@@ -19,10 +19,7 @@ export const WithIcon: Story = (args) => (
     <div style={{ width: "300px" }}> <InputField data-test-id="InputField-id" {...args} /></div>
 );
 WithIcon.args = {
-    icon: {
-        type: "fontawesome",
-        icon: faMagnifyingGlass
-    },
+    icon: <Icon type="fontawesome" icon={faMagnifyingGlass} />,
     placeholder: "First Name",
 };
 

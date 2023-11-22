@@ -5,6 +5,7 @@ export interface SideModalProps extends React.HTMLAttributes<HTMLInputElement> {
     width?: string;
     staticBackdrop?: boolean
     onClose?: () => void
+    beforeOpen?: () => void
 }
 
 export interface SideModalHeaderProps extends React.HTMLAttributes<HTMLInputElement> {

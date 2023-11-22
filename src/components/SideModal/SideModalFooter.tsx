@@ -9,7 +9,11 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem;
-    flex-shrink: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 30;
+    background-color: #ffff;
 `
 
 export default function SideModalFooter({ children }: any) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useImperativeHandle, useRef, useState } from "react"
 import { SideModalProps } from "./SideModal.types"
 import { keyframes, styled } from "styled-components"
 import SideModalHeader from "./SideModalHeader"
@@ -27,7 +27,7 @@ const fadeOut = keyframes`
 
 
 const ModalWrapper = styled.div`
-   background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   width: 100vw;
   height: 100vh;
   z-index: 10000;
@@ -85,18 +85,14 @@ const ContentWraper = styled.div<{ $width: string }>`
 
 
 const SideModal = React.forwardRef<HTMLElement, SideModalProps>((props: SideModalProps, ref: any) => {
-    const { children, isOpen, staticBackdrop = false, width = "300px", className, onClose, ...rest } = props
+    const { children, isOpen, staticBackdrop = false, width = "300px", className, onClose, beforeOpen, ...rest } = props
 
     const [isClosing, setIsClosing] = useState(false)
     const contentRef: any = useRef(null)
 
 
-    useEffect(() => {
-        document.body.style.overflow = isOpen ? "hidden" : "auto"
-    }, [isOpen])
 
-
-    const closeModal = (e: any) => {
+    const closeModal = () => {
 
         setIsClosing(true)
 
@@ -126,16 +122,25 @@ const SideModal = React.forwardRef<HTMLElement, SideModalProps>((props: SideModa
     const handleClickOutside = (e: any) => {
         if (contentRef.current && !contentRef.current?.contains(e.target as Node)) {
             if (!staticBackdrop) {
-                closeModal(e)
+                closeModal()
             }
         }
     }
 
     const listenKeyDown = (e: any) => {
         if (!staticBackdrop && (e.code === "Escape" || e.keyCode === 27)) {
-            closeModal(e)
+            closeModal()
         }
     }
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "auto"
+
+        if (isOpen && beforeOpen) {
+            beforeOpen()
+        }
+
+    }, [isOpen])
+
 
     useEffect(() => {
         document.addEventListener("click", handleClickOutside, true)
@@ -146,9 +151,17 @@ const SideModal = React.forwardRef<HTMLElement, SideModalProps>((props: SideModa
         }
     }, [])
 
+
+    useImperativeHandle(ref, () => ({
+        close: () => {
+            closeModal()
+        },
+    }));
+
+
     return <>
         {isOpen && <ModalWrapper {...rest} ref={ref} className={classNames(className, "slide-modal-backdrop", isClosing && "fade-out")}>
-            <ContentWraper ref={contentRef} $width={width} className={classNames("slide-modal-content", isClosing && "slide-out")}>
+            <ContentWraper ref={contentRef} $width={width} className={classNames("slide-modal", isClosing && "slide-out")}>
                 {modifiedChildren(children)}
             </ContentWraper>
         </ModalWrapper>}

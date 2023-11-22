@@ -10,8 +10,8 @@ export interface TextAreaProps extends React.HTMLAttributes<HTMLElement> {
     maxLength?: number,
     description?: string,
     errorMsg?: string;
-    rows?: string;
-    cols?: string
+    rows?: number;
+    cols?: number
     name?: string;
     onChange?: (e: any) => void
 

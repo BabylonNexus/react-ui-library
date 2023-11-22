@@ -31,7 +31,7 @@ const InputWrapper = styled.input`
         width: 100%;
         box-sizing: border-box;
         padding: 0.8rem;
-        padding-inline-end: 2rem;
+        padding-inline-end: 3rem;
         font-size: 1.1em;
         border-radius:0.3rem;
         background-color: var(--input-bg-color);
@@ -88,7 +88,7 @@ const InputWrapper = styled.input`
         }
 `
 
-const IconWrapper = styled(Icon)`
+const IconWrapper = styled.div`
     position: absolute;
     top:13px;
     left:10px;
@@ -97,10 +97,10 @@ const IconWrapper = styled(Icon)`
 `
 
 
-const EraseIcon = styled(Icon)`
+const EraseIcon = styled.div`
     position: absolute;
     top:13px;
-    right: 10px;
+    right: 23px;
      font-size: 1.2em;
 
      &:hover{
@@ -109,10 +109,11 @@ const EraseIcon = styled(Icon)`
 `
 
 
+
+
 const Label = styled.label<any>`
   position: absolute;
   top: ${(props) => (props.$hasvalue ? "-13px" : "0")};
- // font-weight: bold;
   padding: 14px;
   font-size: ${(props) => (props.$hasvalue ? "12px" : "18px")};
   color: var(--input-placeholder-color);
@@ -128,7 +129,7 @@ const Label = styled.label<any>`
 
 const InfoContainer = styled.div`
     display: flex;
-   justify-content: space-between;
+    justify-content: space-between;
     margin-top: 0.2rem;
     margin-left: 0.2rem;
     align-items: center;
@@ -201,15 +202,13 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((props: I
         return () => inputRef?.current?.removeEventListener("keydown", listenForErase)
     }, [])
 
-    const eraseIcon = { type: IconTypeEnum.FontAwesome, icon: faXmark, onClick: cleanInput, className: 'erase-icon' }
-
     return (
         <Container ref={ref} className={classNames(className, "input-group", disabled && 'disabled')}>
             <InputContainer className="input-wrapper">
-                {icon && <IconWrapper {...icon} className={classNames(icon.className, 'icon-prepend')} />}
+                {icon && <IconWrapper className="icon-prepend">{icon}</IconWrapper>}
                 <InputWrapper {...rest} ref={inputRef} name={name} className={classNames('input-field', icon && "with-icon", errorMsg && "invalid", isRounded && 'rounded')} placeholder="" onChange={change} value={val} type={type} maxLength={maxLength} />
                 {placeholder && <Label htmlFor={name} $hasvalue={!!val} $isrequired={required} className='input-placeholder'>{placeholder}</Label>}
-                {(val && type !== "number") && <EraseIcon {...eraseIcon} />}
+                {(val && type !== "number") && <EraseIcon role="button" aria-label="Clean input" tabIndex={0} onClick={(e: any) => cleanInput(e)}>&#10006;</EraseIcon>}
             </InputContainer>
             {(description || maxLength || errorMsg) ? <InfoContainer className="info-container">
                 {description && !errorMsg && <Description className="info-description">{description}</Description>}

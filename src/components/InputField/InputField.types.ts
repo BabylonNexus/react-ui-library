@@ -1,7 +1,6 @@
-import { IconProps } from "../Icon";
 
 export interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> {
-    icon?: IconProps
+    icon?: React.ReactNode
     isRounded?: boolean;
     name?: string;
     errorMsg?: string;

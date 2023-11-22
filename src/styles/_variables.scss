@@ -36,6 +36,20 @@ $input-color:$dark !default;
 
 
 
+//select
+$select-bg-color:$light !default;
+$select-border-color:$dark !default;
+$select-hover-color: $accent !default;
+$select-color:$dark !default;
+$select-placeholder-color:#495057 !default;
+$select-item-hover-color:#E9E9E9 !default;
+$select-multivalue-bg-color:#E9E9E9 !default;
+
+
+//checkbox
+
+$checkbox-accent-color:$dark;
+
 //list-items
 $list-item-hover-color:#E9E9E9 !default;
 
@@ -52,7 +66,7 @@ $modal-close-icon-color: $dark !default;
 
 //tabs
 
-$tab-border-color:$secondary;
+$tab-border-color:$secondary !default;
 
 
 
@@ -65,6 +79,7 @@ $theme-colors:("primary":$primary,
     "accent":$accent,
     "warning":$warning,
     "info":$info) !default;
+
 
 $colors:("primary":$primary,
     "secondary":$secondary,
@@ -89,6 +104,14 @@ $colors:("primary":$primary,
     "input-placeholder-color":$input-placeholder-color,
     "input-icon-color":$input-icon-color,
     "input-color":$input-color,
+    "select-bg-color":$select-bg-color,
+    "select-border-color":$select-border-color,
+    "select-hover-color":$select-hover-color,
+    "select-color":$select-color,
+    "select-placeholder-color":$select-placeholder-color,
+    "select-item-hover-color":$select-item-hover-color,
+    "select-multivalue-bg-color":$select-multivalue-bg-color,
+    "checkbox-accent-color":$checkbox-accent-color,
     "list-item-hover-color":$list-item-hover-color,
     "loading-spinner-default-color":$loading-spinner-default-color,
     "modal-bg-color":$modal-bg-color,

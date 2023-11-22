@@ -9,11 +9,16 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 30;
+    background-color: #ffff;
 `
 
 const CloseButtonWrapper = styled.button`
-    margin-right: 0.5rem;
-    padding: 0.3;
+    margin-right: 1rem;
     border: none;
     font: inherit;
     color: inherit;
